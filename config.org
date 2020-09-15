@@ -1,0 +1,78 @@
+#+TITLE: Emacs Vanilla Chocolate Swirl
+
+* Introduction 
+This was inspired by a discussion on the emacs mailing list and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
+
+* Packages
+I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
+
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+ (package-refresh-contents))
+
+;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+   (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+#+END_SRC 
+
+* UI
+** Coat of paint
+A config by nature is personal preference but this section is even more subjective to taste. I prefer a dark-theme with no toolbar and text that doesn't run all the way to the edges.
+
+#+BEGIN_SRC emacs-lisp 
+(load-theme 'wombat)
+(tool-bar-mode -1)
+(set-fringe-mode 15) 
+(global-visual-line-mode 1)
+#+END_SRC
+
+** Visual Functionality
+Features like line-numbers and spell-check being enabled are fairly standard with modern editors. Emacs does syntax-highlighting by default but not spell-check (which I think is syntax highlighting for prose).
+
+#+BEGIN_SRC emacs-lisp
+(global-linum-mode 1)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+END_SRC
+
+* UX - Keep user long enough to discover things
+  The keybindings for Emacs are different than what a lot of people coming from VS Code / Sublime / Notepad++ would expect. Not being able to cut/copy/paste and undo/redo with familiar keys and in predictable manner creates a steeper learning curve without significant value.
+
+** CUA and friends
+CUA mode takes care of most of these needs but I find myself reaching for ~CTRL+s~ and ~CTRL+o~ and ~SHFT+CTRL+p~ (Sublime command palette) often so they are the friends. 
+Note: I'm using the ~CTRL-~ notation instead of Emacs ~C-~ notation to emphasize the mindset of this transitioning user. 
+
+It turns out that simulating a GUI action for File -> Open is a little more involved than just calling ~find-file~, [[https://stackoverflow.com/questions/26483918/bind-file-open-file-with-gui-dialog-to-c-o-as-global-set-key#26484229][this thread]] has a good explanation.
+
+#+BEGIN_SRC emacs-lisp
+(cua-mode 1)
+(global-set-key (kbd "C-s") 'save-buffer)
+(global-set-key (kbd "C-S-p") 'execute-extended-command)
+
+(global-set-key (kbd "C-o") 'menu-find-file-existing)
+(defadvice find-file-read-args (around find-file-read-args-always-use-dialog-box act)
+  "Simulate invoking menu item as if by the mouse; see `use-dialog-box'."
+ (let ((last-nonmenu-event nil))
+       ad-do-it))
+#+END_SRC
+
+** Undo and Redo
+This is where I struggle to suggest that Emacs' more powerful undo system shouldn't be presented to the transitioning user but there's a reason there are so many popular undo/redo packages. I feel that ~undo-fu.el~ has the best approach to this and provides expected behavior to the transitioning user without neutering Emacs.
+
+#+BEGIN_SRC emacs-lisp
+(use-package undo-fu
+  :config
+  ;(global-undo-tree-mode -1)
+  :bind (("C-z" . undo-fu-only-undo)
+         ("C-S-z" . undo-fu-only-redo)))
+#+END_SRC
