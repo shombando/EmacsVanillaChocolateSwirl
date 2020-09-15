@@ -25,14 +25,14 @@ I will be using a few packages that don't ship with Emacs. I'll be using ~use-pa
 (setq use-package-always-ensure t)
 #+END_SRC 
 
-* UI
+* UI - Make it look less "classic"
 ** Coat of paint
 A config by nature is personal preference but this section is even more subjective to taste. I prefer a dark-theme with no toolbar and text that doesn't run all the way to the edges.
 
 #+BEGIN_SRC emacs-lisp 
 (load-theme 'wombat)
 (tool-bar-mode -1)
-(set-fringe-mode 15) 
+;(set-fringe-mode 15) 
 (global-visual-line-mode 1)
 #+END_SRC
 
@@ -43,6 +43,13 @@ Features like line-numbers and spell-check being enabled are fairly standard wit
 (global-linum-mode 1)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+END_SRC
+
+While this is not strictly necessary I think using literate programming to walk new users through building their own config could be a helpful tool. Being able to export that org file as html right off the bat might be a "wow" factor for the user to show with the uninitiated. Org-mode supports HTML export natively but syntax highlighting is added through ~htmlize.el~.
+
+#+BEGIN_SRC emacs-lisp
+(use-package htmlize)
+(setq org-src-fontify-natively t)
 #+END_SRC
 
 * UX - Keep user long enough to discover things
