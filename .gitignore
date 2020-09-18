@@ -1,1 +1,4 @@
-config.el
+*
+!config.org
+!init.el
+!readme.org

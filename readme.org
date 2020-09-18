@@ -1,0 +1,24 @@
+#+TITLE: "Modern" Emacs experience for transitioning user
+
+* Introduction
+This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][Emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
+
+* Goals
+** What it is
+- A way for me to understand Emacs config and package system better
+- Learn a bit of elisp syntax
+- Play with literate programming
+- Do the learning in public and hopefully learn from others
+** What it isn't
+- An Emacs "distribution" (I use [[https://github.com/hlissner/doom-emacs][doom-eamcs]] it's fantastic and has an excellent community, I wouldn't have made it long with Emacs without doom)
+- Any claims about idiomatic ways of doing things technically or philosophically, I welcome constructive feedback.
+
+* Usage
+If you want to try it out and suggest some improvements that would be fantastic (PRs welcome)
+#+BEGIN_SRC sh
+git clone git@github.com:shombando/EmacsVanillaChocolateSwirl.git
+cd EmacsVanillaChocolateSwirl
+emacs -q -l .\init.el
+#+END_SRC
+
+

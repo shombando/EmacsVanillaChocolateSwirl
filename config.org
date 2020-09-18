@@ -1,7 +1,7 @@
-#+TITLE: Emacs Vanilla Chocolate Swirl
+#+TITLE: Emacs Vanilla Chocolate Swirl Literate Config
 
 * Introduction 
-This was inspired by a discussion on the emacs mailing list and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
+This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
 
 * Packages
 I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
