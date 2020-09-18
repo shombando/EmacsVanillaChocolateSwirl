@@ -52,6 +52,14 @@ While this is not strictly necessary I think using literate programming to walk 
 (setq org-src-fontify-natively t)
 #+END_SRC
 
+Modeline (status bar) allows for both information dissemination as well as context based interaction. The one used by the ~doom~ package which in-turn is inspired by the Atom text editor is visually appealing and helpful due to being context aware.
+
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+#+END_SRC
+
 * UX - Keep user long enough to discover things
   The keybindings for Emacs are different than what a lot of people coming from VS Code / Sublime / Notepad++ would expect. Not being able to cut/copy/paste and undo/redo with familiar keys and in predictable manner creates a steeper learning curve without significant value.
 
