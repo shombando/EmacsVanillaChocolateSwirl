@@ -18,7 +18,7 @@ If you want to try it out and suggest some improvements that would be fantastic 
 #+BEGIN_SRC sh
 git clone git@github.com:shombando/EmacsVanillaChocolateSwirl.git
 cd EmacsVanillaChocolateSwirl
-emacs -q -l .\init.el
+emacs -q -l ./init.el
 #+END_SRC
 
 
