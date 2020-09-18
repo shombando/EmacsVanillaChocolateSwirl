@@ -91,3 +91,14 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
   :bind (("C-z" . undo-fu-only-undo)
          ("C-S-z" . undo-fu-only-redo)))
 #+END_SRC
+** Work in Progress
+I plan to add the following concepts/packages in no priority order
+*** which-key
+*** treemacs
+*** vc-gutter
+*** multiple-cursors
+*** completion: helm/ivy
+*** code completion
+Go straight to lsp? Is there value in having company?
+
+
