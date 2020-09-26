@@ -14,11 +14,14 @@ This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/em
 - Any claims about idiomatic ways of doing things technically or philosophically, I welcome constructive feedback.
 
 * Usage
-If you want to try it out and suggest some improvements that would be fantastic (PRs welcome)
+If you want to try it out and suggest some improvements that would be fantastic (PRs welcome, info below)
 #+BEGIN_SRC sh
 git clone git@github.com:shombando/EmacsVanillaChocolateSwirl.git
 cd EmacsVanillaChocolateSwirl
 emacs -q -l ./init.el
 #+END_SRC
 
-
+* Contributing
+I absolutely welcome feedback in the form of PRs, whether it is finishing WIP sections or adding new ones. My only requests is that the contribution is in the form of literate config explaining the why and not just the what. 
+If some configuration is super niche, we'll create an appropriate niche heading to group it under but don't let it stop you from suggesting ideas. Draft PRs are also encouraged if you want to collaborate more closely. 
+Thank you for helping me learn more. 
