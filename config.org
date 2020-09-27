@@ -94,11 +94,22 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
 *** which-key
+
+As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where =[[https://github.com/justbur/emacs-which-key][which-key]]= package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
+
+#+BEGIN_SRC emacs-lisp
+    (use-package which-key
+      :ensure t
+      :config
+      (which-key-mode))
+#+END_SRC
+
+We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
+
 *** treemacs
 *** vc-gutter
 *** multiple-cursors
 *** completion: helm/ivy
 *** code completion
 Go straight to lsp? Is there value in having company?
-
 
