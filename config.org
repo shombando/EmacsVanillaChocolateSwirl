@@ -95,7 +95,7 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
 I plan to add the following concepts/packages in no priority order
 *** which-key
 
-As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where =[[https://github.com/justbur/emacs-which-key][which-key]]= package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
+As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where [[https://github.com/justbur/emacs-which-key][which-key]] package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
 
 #+BEGIN_SRC emacs-lisp
     (use-package which-key
