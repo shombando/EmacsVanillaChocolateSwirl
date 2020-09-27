@@ -1,7 +1,9 @@
 #+TITLE: "Modern" Emacs experience for transitioning user
 
 * Introduction
-This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][Emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
+This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][Emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. 
+
+A lot of times these discussions are presented as a zero-sum game. The defaults don't need to be changed at all. However, a new user setup wizard (which launches only if a config isn't detected, so experienced users won't even have to hit cancel). The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
 
 * Goals
 ** What it is
