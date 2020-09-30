@@ -24,6 +24,12 @@ emacs -q -l ./init.el
 #+END_SRC
 
 * Contributing
-I absolutely welcome feedback in the form of PRs, whether it is finishing WIP sections or adding new ones. My only requests is that the contribution is in the form of literate config explaining the why and not just the what. 
+I absolutely welcome feedback in the form of PRs, whether it is finishing WIP sections or adding new ones. 
+A requirement:
+- the contribution should be in the form of literate config explaining the why and not just the what. 
+A request:
+- please create one PR per package being configured so I can test and merge them independently. 
+
 If some configuration is super niche, we'll create an appropriate niche heading to group it under but don't let it stop you from suggesting ideas. Draft PRs are also encouraged if you want to collaborate more closely. 
+
 Thank you for helping me learn more. 
