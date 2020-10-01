@@ -3,8 +3,14 @@
 * Introduction 
 This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
 
-* Packages
-I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
+* Packages Configuration
+
+Emacs as an editor gives you the ability to personalize. Personalization in Emacs is unlike any other editor that you might have known. You can recode the entire Emacs and make it your own editor. When you begin personalization, you would like to use the Emacs ecosystem. In this section, we will define some of the prerequisites to be able to use those.
+
+** Package Repositories 
+
+ Emacs is an ecosystem of packages, which are important to make Emacs your home. Traditionally, [["https://elpa.gnu.org/packages/"][ELPA]] was the repository of choice for Emacs but lately more modern repositories have started flourishing. If you type command =M-x list-packages= in the Emacs without loading this config file, you will see a list of packages from ELPA. Here we will define the repositories to let Emacs know where to go and fetch the packages from. 
+
 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -16,6 +22,17 @@ I will be using a few packages that don't ship with Emacs. I'll be using ~use-pa
 (package-initialize)
 (unless package-archive-contents
  (package-refresh-contents))
+
+#+END_SRC
+
+Here, we asked emacs to load a package called ~package~, which is the package manager that comes with Emacs out of the box. Also, we defined a list of =package-archives=. In the end we initialized and ask Emacs to refresh it's package list. 
+
+
+** Use Package
+   We will be using a few packages that don't ship with Emacs. We'll be using ~use-package~ to define the configurations. We could have continued using the built-in package manager, but ~use-package~ makes the configuration file look neat and clean. In itself it is not a package manager but an efficient way to load packages. 
+
+
+#+BEGIN_SRC emacs-lisp
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
@@ -45,12 +62,7 @@ Features like line-numbers and spell-check being enabled are fairly standard wit
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 #+END_SRC
 
-While this is not strictly necessary I think using literate programming to walk new users through building their own config could be a helpful tool. Being able to export that org file as html right off the bat might be a "wow" factor for the user to show with the uninitiated. Org-mode supports HTML export natively but syntax highlighting is added through ~htmlize.el~.
-
-#+BEGIN_SRC emacs-lisp
-(use-package htmlize)
-(setq org-src-fontify-natively t)
-#+END_SRC
+*** Modeline
 
 Modeline (status bar) allows for both information dissemination as well as context based interaction. The one used by the ~doom~ package which in-turn is inspired by the Atom text editor is visually appealing and helpful due to being context aware.
 
@@ -59,6 +71,20 @@ Modeline (status bar) allows for both information dissemination as well as conte
   :ensure t
   :init (doom-modeline-mode 1))
 #+END_SRC
+
+
+We just told Emacs to make sure that ~doom-modelin~ is installed (=:ensure t=), if it is not already installed. We do not have to do it because we already set this above when we loaded ~use-package~. Going forward, we will just omit this line.
+
+*** Htmlize
+
+
+While this is not strictly necessary I think using literate programming to walk new users through building their own config could be a helpful tool. Being able to export that org file as html right off the bat might be a "wow" factor for the user to show with the uninitiated. Org-mode supports HTML export natively but syntax highlighting is added through ~htmlize.el~.
+
+#+BEGIN_SRC emacs-lisp
+(use-package htmlize)
+(setq org-src-fontify-natively t)
+#+END_SRC
+
 
 * UX - Keep user long enough to discover things
   The keybindings for Emacs are different than what a lot of people coming from VS Code / Sublime / Notepad++ would expect. Not being able to cut/copy/paste and undo/redo with familiar keys and in predictable manner creates a steeper learning curve without significant value.
@@ -91,22 +117,30 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
   :bind (("C-z" . undo-fu-only-undo)
          ("C-S-z" . undo-fu-only-redo)))
 #+END_SRC
-** Work in Progress
-I plan to add the following concepts/packages in no priority order
+
+** iBuffer
+It is a travesty that Emacs has the buffer manager, which is the most pathetic buffer manager that you will ever see. Surprisingly, Emacs comes with another buffer manager called ~iBuffer~. This should be the default. Let's enable and re-bind the keys. For further discussion, see this [[https://www.reddit.com/r/emacs/comments/4w4z7e/ibuffer_the_best_way_to_manage_many_buffers_in/][reddit post]].
+
+#+BEGIN_SRC emacs-lisp
+ (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
 *** which-key
 
 As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where [[https://github.com/justbur/emacs-which-key][which-key]] package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
 
 #+BEGIN_SRC emacs-lisp
     (use-package which-key
-      :ensure t
       :config
       (which-key-mode))
 #+END_SRC
-
-We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
+We told Emacs that once the package is installed and loaded, activate the =which-key-mode=. 
 
 *** treemacs
+
+** Work in Progress
+I plan to add the following concepts/packages in no priority order
+
 *** vc-gutter
 *** multiple-cursors
 *** completion: helm/ivy
