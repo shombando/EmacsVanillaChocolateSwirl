@@ -106,10 +106,16 @@ As a newbie, it is difficult to remember all the keybindings. And I do not think
 
 We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
 
+*** try
+[[https://github.com/larstvei/Try][try]] is a package to try out packages without installing them. The packages persist for the current Emacs session, and you can always install them if you like.
+#+BEGIN_SRC emacs-lisp
+(use-package try
+  :ensure t)
+#+END_SRC
+
 *** treemacs
 *** vc-gutter
 *** multiple-cursors
 *** completion: helm/ivy
 *** code completion
 Go straight to lsp? Is there value in having company?
-
