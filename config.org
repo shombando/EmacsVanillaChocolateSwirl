@@ -91,6 +91,18 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
   :bind (("C-z" . undo-fu-only-undo)
          ("C-S-z" . undo-fu-only-redo)))
 #+END_SRC
+
+** Dumb Jump
+Dumb Jump implements a simple and hassle-free "Go To Definition" functionality, using either ~rg~, ~ag~ or ~grep~, as well as ~git~ when possible. Given it's dependencies already exist in most UNIX systems, it's a great addition that "just works".
+
+#+BEGIN_SRC emacs-lisp
+(use-package dumb-jump
+  :init (progn
+          (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)))
+#+END_SRC
+
+You can then use ~M-.~ to go to a reference definition using ~xref-find-definitions~. You can use ~M-,~ to go back using ~xref-pop-marker-stack~.
+
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
 *** which-key
