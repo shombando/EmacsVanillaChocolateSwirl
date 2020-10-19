@@ -118,6 +118,18 @@ As a newbie, it is difficult to remember all the keybindings. And I do not think
 
 We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
 
+*** magit
+[[https://magit.vc/][magit]] is a git porcelain. It provides an intuitive, key-chord based interface for Git and makes version control convenient.
+To improve Emacs startup time, we can use =use-package='s =:defer t= feature to load magit only when it is called.
+Since it is used so often, we also give the command its own keybinding.
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :defer t
+  :bind
+  ("C-x g" . magit-status))
+#+END_SRC
+
 *** try
 [[https://github.com/larstvei/Try][try]] is a package to try out packages without installing them. The packages persist for the current Emacs session, and you can always install them if you like.
 #+BEGIN_SRC emacs-lisp
