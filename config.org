@@ -97,6 +97,8 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
          ("C-S-z" . undo-fu-only-redo)))
 #+END_SRC
 
+* Additional Packages
+Here is a collection of other packages that are helpful for various types of workflows.
 ** Dumb Jump
 Dumb Jump implements a simple and hassle-free "Go To Definition" functionality, using either ~rg~, ~ag~ or ~grep~, as well as ~git~ when possible. Given it's dependencies already exist in most UNIX systems, it's a great addition that "just works".
 
@@ -108,10 +110,7 @@ Dumb Jump implements a simple and hassle-free "Go To Definition" functionality, 
 
 You can then use ~M-.~ to go to a reference definition using ~xref-find-definitions~. You can use ~M-,~ to go back using ~xref-pop-marker-stack~.
 
-** Work in Progress
-I plan to add the following concepts/packages in no priority order
-*** which-key
-
+** which-key
 As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where [[https://github.com/justbur/emacs-which-key][which-key]] package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
 
 #+BEGIN_SRC emacs-lisp
@@ -123,7 +122,7 @@ As a newbie, it is difficult to remember all the keybindings. And I do not think
 
 We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
 
-*** magit
+** magit
 [[https://magit.vc/][magit]] is a git porcelain. It provides an intuitive, key-chord based interface for Git and makes version control convenient.
 To improve Emacs startup time, we can use =use-package='s =:defer t= feature to load magit only when it is called.
 Since it is used so often, we also give the command its own keybinding.
@@ -135,13 +134,15 @@ Since it is used so often, we also give the command its own keybinding.
   ("C-x g" . magit-status))
 #+END_SRC
 
-*** try
+** try
 [[https://github.com/larstvei/Try][try]] is a package to try out packages without installing them. The packages persist for the current Emacs session, and you can always install them if you like.
 #+BEGIN_SRC emacs-lisp
 (use-package try
   :ensure t)
 #+END_SRC
 
+** Work in Progress
+I plan to add the following concepts/packages in no priority order
 *** treemacs
 *** vc-gutter
 *** multiple-cursors
