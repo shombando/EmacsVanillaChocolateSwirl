@@ -173,6 +173,13 @@ If you're coming from vim or want to try out modal editing, evil-mode is a great
 #+End_SRC 
  
 
+** doom-themes
+If you want the look of =doom-emacs= without the entire distribution, the doom themes are available as their own package. I personally prefer the doom-one theme which ties everything nicely together.
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :init (load-theme 'doom-one t))
+#+END_SRC
 
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
