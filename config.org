@@ -6,6 +6,10 @@ This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/em
 * Packages
 I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
 
+#+BEGIN_SRC emacs-lisp :noweb strip-export :tangle yes
+;empty block
+#+END_SRC 
+
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 
@@ -69,7 +73,8 @@ Note: I'm using the ~CTRL-~ notation instead of Emacs ~C-~ notation to emphasize
 
 It turns out that simulating a GUI action for File -> Open is a little more involved than just calling ~find-file~, [[https://stackoverflow.com/questions/26483918/bind-file-open-file-with-gui-dialog-to-c-o-as-global-set-key#26484229][this thread]] has a good explanation.
 
-#+BEGIN_SRC emacs-lisp
+#+NAME: execute-last
+#+BEGIN_SRC emacs-lisp :tangle no
 (cua-mode 1)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
@@ -143,3 +148,10 @@ Since it is used so often, we also give the command its own keybinding.
 *** completion: helm/ivy
 *** code completion
 Go straight to lsp? Is there value in having company?
+* Execute Last
+Any keybinds or configurations that might get overwritten can be specified with =execute-last= and we'll run those here.
+
+#+BEGIN_SRC emacs-lisp :noweb strip-export :tangle yes 
+;Tangle all sections marked execute-last
+<<execute-last>>
+#+END_SRC
