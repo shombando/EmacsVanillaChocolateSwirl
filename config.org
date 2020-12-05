@@ -91,6 +91,7 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
 
 #+BEGIN_SRC emacs-lisp
 (use-package undo-fu
+  :after evil-collection
   :config
   ;(global-undo-tree-mode -1)
   :bind (("C-z" . undo-fu-only-undo)
@@ -140,6 +141,38 @@ Since it is used so often, we also give the command its own keybinding.
 (use-package try
   :ensure t)
 #+END_SRC
+
+** evil-mode
+If you're coming from vim or want to try out modal editing, evil-mode is a great place to start.
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode)
+  (evil-leader/set-leader "<SPC>"))
+
+(evil-leader/set-key
+  "." 'find-file
+  "b" 'switch-to-buffer
+  "k" 'kill-buffer
+  "w" 'delete-other-windows)
+#+End_SRC 
+ 
+
 
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
