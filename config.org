@@ -36,7 +36,8 @@ A config by nature is personal preference but this section is even more subjecti
 #+BEGIN_SRC emacs-lisp 
 (load-theme 'wombat)
 (tool-bar-mode -1)
-;(set-fringe-mode 15) 
+(scroll-bar-mode -1)
+(set-fringe-mode 15) 
 (global-visual-line-mode 1)
 #+END_SRC
 
