@@ -170,10 +170,12 @@ If you're coming from vim or want to try out modal editing, evil-mode is a great
   "." 'find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer
-  "w" 'delete-other-windows)
+  "w" 'delete-other-windows
+  "g" 'magit
+  "'" 'execute-extended-command
+  "q" 'save-buffers-kill-terminal
+  "e" 'eval-buffer)
 #+End_SRC 
- 
-
 ** doom-themes
 If you want the look of =doom-emacs= without the entire distribution, the doom themes are available as their own package. I personally prefer the doom-one theme which ties everything nicely together.
 #+BEGIN_SRC emacs-lisp
