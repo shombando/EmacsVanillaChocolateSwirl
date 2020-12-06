@@ -3,12 +3,22 @@
 * Introduction 
 This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. The goal is to provide "sane" defaults and fresher UI to flatten the learning curve. Vanilla Emacs with just a little swirl of smoothness.
 
-* Packages
-I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
+This document is written in [[https://blog.thomasheartman.com/posts/configuring-emacs-with-org-mode-and-literate-programming][literate configuration]] and the =config.el= is generated each time emacs runs the =init.el= during startup. Literate configuration allows us to verbosely describe the why behind the configuration and all the code snippets inside the =#+BEGIN_SRC= and =#+END_SRC= blocks.
 
 #+BEGIN_SRC emacs-lisp :noweb strip-export :tangle yes
+;FIXME: tangle skips the first source block, therefore this dummy block is in place.  
 ;empty block
 #+END_SRC 
+
+** Setup user information
+This allows us to setup our user information in a single place that can be used by packages that need this information instead of doing it in several places.
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Shom Bandopadhaya"
+      user-mail-address "shom@bandopadhaya.com")
+#+END_SRC 
+
+** Setup package manager
+I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -99,6 +109,19 @@ This is where I struggle to suggest that Emacs' more powerful undo system should
          ("C-S-z" . undo-fu-only-redo)))
 #+END_SRC
 
+** Learn and discover keybindings through which-key
+As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where [[https://github.com/justbur/emacs-which-key][which-key]] package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
+
+#+BEGIN_SRC emacs-lisp
+    (use-package which-key
+      :ensure t
+      :config
+      (which-key-mode))
+#+END_SRC
+
+We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
+
+
 * Additional Packages
 Here is a collection of other packages that are helpful for various types of workflows.
 ** Dumb Jump
@@ -111,18 +134,6 @@ Dumb Jump implements a simple and hassle-free "Go To Definition" functionality, 
 #+END_SRC
 
 You can then use ~M-.~ to go to a reference definition using ~xref-find-definitions~. You can use ~M-,~ to go back using ~xref-pop-marker-stack~.
-
-** which-key
-As a newbie, it is difficult to remember all the keybindings. And I do not think that anyone needs to remember all of them. Here is where [[https://github.com/justbur/emacs-which-key][which-key]] package comes into picture. It is an [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html#:~:text=A%20minor%20mode%20is%20an,off%20(disabled)%20in%20others.][Emacs Minor Mode]], that displays the key bindings following your currently entered incomplete command (a prefix). 
-
-#+BEGIN_SRC emacs-lisp
-    (use-package which-key
-      :ensure t
-      :config
-      (which-key-mode))
-#+END_SRC
-
-We just told Emacs use-package to make sure that which-key is installed (=:ensure t=), if it is not already installed. Also, we told Emacs that once the package is installed and loaded, activate the =which-key-mode=.
 
 ** magit
 [[https://magit.vc/][magit]] is a git porcelain. It provides an intuitive, key-chord based interface for Git and makes version control convenient.
