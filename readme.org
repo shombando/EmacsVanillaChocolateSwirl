@@ -12,7 +12,7 @@ A lot of times these discussions are presented as a zero-sum game. The defaults 
 - Play with literate programming
 - Do the learning in public and hopefully learn from others
 ** What it isn't
-- An Emacs "distribution" (I use [[https://github.com/hlissner/doom-emacs][doom-eamcs]] it's fantastic and has an excellent community, I wouldn't have made it long with Emacs without doom)
+- An Emacs "distribution" (I use [[https://github.com/hlissner/doom-emacs][doom-emacs]] it's fantastic and has an excellent community, I wouldn't have made it long with Emacs without doom)
 - Any claims about idiomatic ways of doing things technically or philosophically, I welcome constructive feedback.
 
 * Usage
