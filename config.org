@@ -5,14 +5,14 @@ This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/em
 
 This document is written in [[https://blog.thomasheartman.com/posts/configuring-emacs-with-org-mode-and-literate-programming][literate configuration]] and the =config.el= is generated each time emacs runs the =init.el= during startup. Literate configuration allows us to verbosely describe the why behind the configuration and all the code snippets inside the =#+BEGIN_SRC= and =#+END_SRC= blocks.
 
-#+BEGIN_SRC emacs-lisp :noweb strip-export :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes :noweb strip-export :tangle yes
 ;FIXME: tangle skips the first source block, therefore this dummy block is in place.  
 ;empty block
 #+END_SRC 
 
 ** Setup user information
 This allows us to setup our user information in a single place that can be used by packages that need this information instead of doing it in several places.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq user-full-name "Shom Bandopadhaya"
       user-mail-address "shom@bandopadhaya.com")
 #+END_SRC 
@@ -20,7 +20,7 @@ This allows us to setup our user information in a single place that can be used 
 ** Setup package manager
 I will be using a few packages that don't ship with Emacs. I'll be using ~use-package~ as a package manager. [[https://github.com/daviwil/runemacs/blob/c0266ff684f670ecc5e41615c0282912e6615214/init.el][This snippet]] was very helpful in setting up use-package minimally.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -43,7 +43,7 @@ I will be using a few packages that don't ship with Emacs. I'll be using ~use-pa
 ** Coat of paint
 A config by nature is personal preference but this section is even more subjective to taste. I prefer a dark-theme with no toolbar and text that doesn't run all the way to the edges.
 
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle yes 
 (load-theme 'wombat)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -54,7 +54,7 @@ A config by nature is personal preference but this section is even more subjecti
 ** Visual Functionality
 Features like line-numbers and spell-check being enabled are fairly standard with modern editors. Emacs does syntax-highlighting by default but not spell-check (which I think is syntax highlighting for prose).
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (global-linum-mode 1)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -62,14 +62,14 @@ Features like line-numbers and spell-check being enabled are fairly standard wit
 
 While this is not strictly necessary I think using literate programming to walk new users through building their own config could be a helpful tool. Being able to export that org file as html right off the bat might be a "wow" factor for the user to show with the uninitiated. Org-mode supports HTML export natively but syntax highlighting is added through ~htmlize.el~.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package htmlize)
 (setq org-src-fontify-natively t)
 #+END_SRC
 
 Modeline (status bar) allows for both information dissemination as well as context based interaction. The one used by the ~doom~ package which in-turn is inspired by the Atom text editor is visually appealing and helpful due to being context aware.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
@@ -84,7 +84,7 @@ Note: I'm using the ~CTRL-~ notation instead of Emacs ~C-~ notation to emphasize
 
 It turns out that simulating a GUI action for File -> Open is a little more involved than just calling ~find-file~, [[https://stackoverflow.com/questions/26483918/bind-file-open-file-with-gui-dialog-to-c-o-as-global-set-key#26484229][this thread]] has a good explanation.
 
-#+NAME: execute-last
+#+NAME: execute-last-1
 #+BEGIN_SRC emacs-lisp :tangle no
 (cua-mode 1)
 (global-set-key (kbd "C-s") 'save-buffer)
@@ -127,7 +127,7 @@ Here is a collection of other packages that are helpful for various types of wor
 ** Dumb Jump
 Dumb Jump implements a simple and hassle-free "Go To Definition" functionality, using either ~rg~, ~ag~ or ~grep~, as well as ~git~ when possible. Given it's dependencies already exist in most UNIX systems, it's a great addition that "just works".
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package dumb-jump
   :init (progn
           (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)))
@@ -139,7 +139,7 @@ You can then use ~M-.~ to go to a reference definition using ~xref-find-definiti
 [[https://magit.vc/][magit]] is a git porcelain. It provides an intuitive, key-chord based interface for Git and makes version control convenient.
 To improve Emacs startup time, we can use =use-package='s =:defer t= feature to load magit only when it is called.
 Since it is used so often, we also give the command its own keybinding.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package magit
   :ensure t
   :defer t
@@ -149,14 +149,14 @@ Since it is used so often, we also give the command its own keybinding.
 
 ** try
 [[https://github.com/larstvei/Try][try]] is a package to try out packages without installing them. The packages persist for the current Emacs session, and you can always install them if you like.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package try
   :ensure t)
 #+END_SRC
 
 ** evil-mode
 If you're coming from vim or want to try out modal editing, evil-mode is a great place to start.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package evil
   :ensure t
   :init
@@ -189,12 +189,11 @@ If you're coming from vim or want to try out modal editing, evil-mode is a great
 #+End_SRC 
 ** doom-themes
 If you want the look of =doom-emacs= without the entire distribution, the doom themes are available as their own package. I personally prefer the doom-one theme which ties everything nicely together.
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package doom-themes
   :ensure t
   :init (load-theme 'doom-one t))
 #+END_SRC
-
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
 *** treemacs
@@ -206,7 +205,8 @@ Go straight to lsp? Is there value in having company?
 * Execute Last
 Any keybinds or configurations that might get overwritten can be specified with =execute-last= and we'll run those here.
 
-#+BEGIN_SRC emacs-lisp :noweb strip-export :tangle yes 
+#+BEGIN_SRC emacs-lisp :tangle yes :noweb strip-export  
 ;Tangle all sections marked execute-last
-<<execute-last>>
+<<execute-last-1>>
+<<execute-last-0>>
 #+END_SRC
