@@ -194,6 +194,35 @@ If you want the look of =doom-emacs= without the entire distribution, the doom t
   :ensure t
   :init (load-theme 'doom-one t))
 #+END_SRC
+
+** Vertico
+[[https://github.com/minad/vertico][Vertico]] allows for a vertically expanding completion UI which is more familiar for a lot of users since drop-down lists are ubiquitous.
+#+BEGIN_SRC emacs-lisp :tangle yes
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Optionally enable cycling for `vertico-next', `vertico-previous',
+  ;; `vertico-next-group' and `vertico-previous-group'.
+  (setq vertico-cycle t)
+)
+
+;; Use the `orderless' completion style.
+;; Enable `partial-completion' for files to allow path expansion.
+;; You may prefer to use `initials' instead of `partial-completion'.
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+#+END_SRC
+
 ** Work in Progress
 I plan to add the following concepts/packages in no priority order
 *** treemacs
