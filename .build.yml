@@ -6,11 +6,11 @@ packages:
 secrets:
   - f6ce6e26-6f68-4ed1-93b7-359f72bca15f
 environment:
-  REPO_ID: 31285
+  REPO_ID: 112930
   README: README.html
 tasks:
   - convert-readme: |
-      pandoc -o README.html ./emacsVanillaChocolateSwirl/readme.org
+      pandoc -o README.html ./EmacsVanillaChocolateSwirl/readme.org
   - update-readme: |
       set +x  # Avoid echoing the token
       jq -sR '{
