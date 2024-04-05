@@ -1,4 +1,8 @@
-#+TITLE: "Modern" Emacs experience for transitioning user
+* Project superceded by [[https://github.com/shombando/.emacs.custom][.emacs.custom]]
+This repo will be archived.
+------
+
+* "Modern" Emacs experience for transitioning user
 
 * Introduction
 This was inspired by a discussion on the [[https://lists.gnu.org/archive/html/emacs-devel/2020-09/msg00340.html][Emacs mailing list]] and as a new user (less than 6 months at the time of writing) creating a config was the best way for me to contribute to the conversation. Therefore, this is an attempt to create a literate config that can be presented as an option to a user migrating from "modern" editors/IDEs. 
